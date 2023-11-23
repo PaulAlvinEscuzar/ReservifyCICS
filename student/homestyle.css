@@ -1,0 +1,105 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    transition:all .2s linear;
+}
+.container-product
+{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.products  .product-container
+{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 35rem);
+   gap:1.5rem;
+   justify-content: center;
+}
+.products  .product-container .product-box
+{
+    text-align: center;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0.5rem 1rem rgba(0,0,0,.1);
+    outline: .1rem solid #ccc;
+    outline-offset: -1.5rem;
+    cursor: pointer;
+}
+.product-container .product-box:hover
+{
+    outline: .2rem solid #222   ;
+    outline-offset:0;
+}
+.product-container .product-box img
+{
+    height: 15rem;
+}
+.product-container .product-box img:hover
+{
+    transform: scale(.9);
+}
+.product-container .product-box h3
+{
+    padding:.5rem 0;
+    font-size: 2rem;
+    color: #444;
+}
+.product-container .product-box h3:hover
+{
+    color: red;
+}
+.product-container .product-box .price
+{
+    font-size: 2rem;
+    color: #444;
+}
+@media (max-width :991px)
+{
+    html{
+        font-size: 55%;
+    }
+}
+
+@media (max-width :786px)
+{
+    .product-prev .prev img
+    {
+    height: 25rem;
+    }
+}
+
+
+@media (max-width :450px)
+{
+    html{
+        font-size: 50%;
+    }
+}
+
+body {
+    background-image: url('../img/bg-bsu.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bg-container {
+    /* Add some padding or styling for better visibility */
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+}
+.edit-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, .8);
+    padding: 2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
