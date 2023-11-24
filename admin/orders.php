@@ -102,16 +102,24 @@ if(isset($_GET['delete'])){
                         $orderid = $row['OrderID'];
                         $orderdate = $row['Orderdate'];
                         $status = $row['Status'];
-                        $query = "SELECT firstname, lastname FROM student_record WHERE SR_Code = '$srcode'";
+                        $query = "SELECT studid FROM student_record WHERE SR_Code = '$srcode'";
                         $studentview = mysqli_query($conn,$query);
-
                         if(mysqli_num_rows($studentview) > 0){
                             while($row = mysqli_fetch_assoc($studentview)){
+                                $id = $row['studid'];
+                                $info = "SELECT * FROM tbstudinfo WHERE studid = '$id'";
+                                $query_info = mysqli_query($conn, $info);
+                                if(mysqli_num_rows($query_info)>0){
+                                    while($inforow = mysqli_fetch_assoc($query_info)){
+                                        $fname = $inforow['firstname'];
+                                        $lname = $inforow['lastname'];
+                                    }
+                                }
                     ?>
                     <tr>
                         <td class="text-center"><?php echo "$orderid"?></td>
                         <td class="text-center"><?php echo "$srcode" ?></td>
-                        <td class="text-center"><?php echo $row['firstname']?> <?php echo $row['lastname']?></td>
+                        <td class="text-center"><?php echo $fname?> <?php echo $lname?></td>
                         <td class="text-center"><?php echo "$orderdate" ?></td>
                         <td class="text-center"><?php echo "$status"?></td>
                         <td class="text-center">

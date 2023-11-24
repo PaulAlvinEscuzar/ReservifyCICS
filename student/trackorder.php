@@ -32,7 +32,7 @@ include('../includes/header.php');
 </head>
 <?php
 session_start();
-if (isset($_SESSION['prog_sec'])) {
+if (isset($_SESSION['course'])) {
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">

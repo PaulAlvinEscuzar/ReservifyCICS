@@ -19,31 +19,42 @@
 include('../includes/header.php');
 
 if(isset($_GET['delete'])){
-    $srcode = $_GET['delete'];
+    $id = $_GET['delete'];
+    
 
-    $query = "DELETE FROM student_record WHERE SR_Code = '$srcode'";
-    $delete = mysqli_query($conn,$query);
+    $query1 = "DELETE FROM student_record WHERE studid = '$id'";
+    $delete1 = mysqli_query($conn,$query1);
 
-    if($delete){
+    $query2 = "DELETE FROM tbstudifo WHERE studid = '$id'";
+    $delete2 = mysqli_query($conn,$query2);
+
+    if($delete1 && $delete2){
         header("Location:../admin/customerDetails.php?message=The Customer Successfully Remove");
     }
 }
 
 if(isset($_POST['update_customer'])){
+    $id = $_POST['id'];
     $srcode = $_POST['srcode'];
     $pass = $_POST['pass'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $email = $_POST['email'];
     $dept = $_POST['dept'];
-    $progsec = $_POST['progsec'];
     $cnum = $_POST['cnum'];
 
-    $query = "UPDATE student_record SET SR_Code = '$srcode', pass = '$pass', firstname = '$fname', lastname = '$lname', email = '$email', dept = '$dept', prog_sec= '$progsec', cnum = '$cnum'";
-    $update = mysqli_query($conn,$query);
+    $query1 = "UPDATE student_record SET SR_Code = '$srcode', pass = '$pass', email = '$email', cnum = '$cnum' WHERE studid = '$id'";
+    $update1 = mysqli_query($conn, $query1);
 
-    if($update){
+    // Update second table
+    $query2 = "UPDATE tbstudinfo SET firstname = '$fname', lastname = '$lname', course = '$dept' WHERE studid = '$id'";
+    $update2 = mysqli_query($conn, $query2);
+
+    if($update1 && $update2){
         header("Location:../admin/customerDetails.php?message=The Customer Successfully Update");
+    }else {
+        mysqli_rollback($conn);
+        echo "Something went wrong. Transaction rolled back.";
     }
 }
 ?>
@@ -95,21 +106,35 @@ if(isset($_POST['update_customer'])){
 
                 if(mysqli_num_rows($select)>0){
                     while($row = mysqli_fetch_assoc($select)){
+                        $id = $row['studid'];
+                        $srcode = $row['SR_Code'];
+                        $pass = $row['pass'];
+                        $email = $row['email'];
+                        $cnum = $row['cnum'];
+                        
+                $query_info = "SELECT * FROM tbstudinfo WHERE studid = '$id'";
+                $info = mysqli_query($conn, $query_info);
+
+                if ($info && mysqli_num_rows($info) > 0) {
+                    $inforow = mysqli_fetch_assoc($info);
+                    $fname = $inforow['firstname'];
+                    $lname = $inforow['lastname'];
+                    $course = $inforow['course'];
+                } 
                     ?>
                     <tr>
-                        <td><?php echo $row['SR_Code'] ?></td>
-                        <td><?php echo $row['pass'] ?></td>
-                        <td><?php echo $row['firstname'] ?></td>
-                        <td><?php echo $row['lastname'] ?></td>
-                        <td><?php echo $row['email'] ?></td>
-                        <td><?php echo $row['dept'] ?></td>
-                        <td><?php echo $row['prog_sec'] ?></td>
-                        <td><?php echo $row['cnum'] ?></td>
+                        <td><?php echo $srcode ?></td>
+                        <td><?php echo $pass ?></td>
+                        <td><?php echo $fname ?></td>
+                        <td><?php echo $lname ?></td>
+                        <td><?php echo $email ?></td>
+                        <td><?php echo $course ?></td>
+                        <td><?php echo $cnum?></td>
                         <td>
                             <a href = "../admin/customerDetails.php?update=<?php echo $row['SR_Code']?>" class="btn btn-primary">Update</a>
                         </td>
                         <td>
-                            <a href = "../admin/customerDetails.php?delete=<?php echo $row['SR_Code']?>" class="btn btn-primary">Delete</a>
+                            <a href = "../admin/customerDetails.php?delete=<?php echo $id?>" class="btn btn-primary">Delete</a>
                         </td>
                     </tr>
                 <?php    
@@ -130,41 +155,53 @@ if(isset($_POST['update_customer'])){
             $edit = mysqli_query($conn,$query);
             if(mysqli_num_rows($edit) > 0){
                 while($row = mysqli_fetch_assoc($edit)){
+                    $id = $row['studid'];
+                    $srcode = $row['SR_Code'];
+                    $pass = $row['pass'];
+                    $email = $row['email'];
+                    $cnum = $row['cnum'];
+                    $query_info = "SELECT * FROM tbstudinfo WHERE studid = '$id'";
+                $info = mysqli_query($conn, $query_info);
+
+                if ($info && mysqli_num_rows($info) > 0) {
+                    $inforow = mysqli_fetch_assoc($info);
+                    $fname = $inforow['firstname'];
+                    $lname = $inforow['lastname'];
+                    $course = $inforow['course'];
+                } 
         ?>
         <div class="col-lg-4 bg-white m-auto border border-danger-subtle p-3">
             <form action="" method="post" enctype="multipart/form-data">
+                
+            <input type="text" class="form-control" hidden value="<?php echo $id?>" name="id" >
 
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text" class="form-control" required value="<?php echo $row['SR_Code']?>" name="srcode" SS>
+                    <input type="text" class="form-control" required value="<?php echo $srcode?>" name="srcode">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text"  required  class="form-control" value="<?php echo $row['pass']?>" name="pass" >
+                    <input type="text"  required  class="form-control" value="<?php echo $pass?>" name="pass" >
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text"  required  class="form-control" value="<?php echo $row['firstname']?>" name="fname" >
+                    <input type="text"  required  class="form-control" value="<?php echo $fname?>" name="fname" >
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text"  required  class="form-control" value="<?php echo $row['lastname']?>" name="lname" >
+                    <input type="text"  required  class="form-control" value="<?php echo $lname?>" name="lname" >
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text"  required  class="form-control" value="<?php echo $row['email']?>" name="email" >
+                    <input type="text"  required  class="form-control" value="<?php echo $email?>" name="email" >
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text" required  class="form-control" value="<?php echo $row['dept']?>" name="dept" >
+                    <input type="text" required  class="form-control" value="<?php echo $course?>" name="dept" >
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text"  required  class="form-control" value="<?php echo $row['prog_sec']?>" name="progsec" >
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                    <input type="text" required  class="form-control" value="<?php echo $row['cnum']?>" name="cnum" >
+                    <input type="text" required  class="form-control" value="<?php echo $cnum?>" name="cnum" >
                 </div>
                 <div class="container d-grid">
                     <input type="submit" value = "Update" class="btn btn-success mb-3" name="update_customer">

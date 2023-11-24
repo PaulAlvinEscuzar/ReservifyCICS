@@ -27,12 +27,19 @@ if (isset($_POST['srcode']) && isset($_POST['password'])) {
             $row = mysqli_fetch_assoc($login);
             if ($row['SR_Code'] === $srcode && $row['pass'] === $password) {
                 echo "<script type = 'text/javascript'>alert('Login Successfully')</script>";
+                $id = $row['studid'];
                 $_SESSION['SR_Code'] = $row['SR_Code'];
-                $_SESSION['firstname'] = $row['firstname'];
-                $_SESSION['lastname'] = $row['lastname'];
-                $_SESSION['dept'] = $row['dept'];
-                $_SESSION['prog_sec'] = $row['prog_sec'];
+                
+                $query_info = "SELECT * FROM tbstudinfo WHERE studid = '$id'";
+                $info = mysqli_query($conn, $query_info);
 
+                if ($info && mysqli_num_rows($info) > 0) {
+                    $inforow = mysqli_fetch_assoc($info);
+                    $_SESSION['firstname'] = $inforow['firstname'];
+                    $_SESSION['lastname'] = $inforow['lastname'];
+                    $_SESSION['course'] = $inforow['course'];
+                } 
+                
                 header('Location:../student/home.php');
                 exit();
             } else {

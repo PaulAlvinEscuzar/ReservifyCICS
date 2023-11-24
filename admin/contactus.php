@@ -67,18 +67,24 @@ include '../includes/db.php';
                     $subject = $row_mail['subject'];
                     $message = $row_mail['message'];
 
-                    $student = "SELECT firstname,lastname,email FROM student_record WHERE SR_Code = '$srcode'";
-                    $select_student = mysqli_query($conn,$student);
-
-                    if(mysqli_num_rows($select_student)>0){
-                        while($row = mysqli_fetch_assoc($select_student)){
-                            $firstname = $row['firstname'];
-                            $lastname = $row['lastname'];
+                    $query = "SELECT studid, email FROM student_record WHERE SR_Code = '$srcode'";
+                    $studentview = mysqli_query($conn,$query);
+                    if(mysqli_num_rows($studentview) > 0){
+                        while($row = mysqli_fetch_assoc($studentview)){
+                            $id = $row['studid'];
                             $email = $row['email'];
+                            $info = "SELECT * FROM tbstudinfo WHERE studid = '$id'";
+                            $query_info = mysqli_query($conn, $info);
+                            if(mysqli_num_rows($query_info)>0){
+                                while($inforow = mysqli_fetch_assoc($query_info)){
+                                    $fname = $inforow['firstname'];
+                                    $lname = $inforow['lastname'];
+                                }
+                            }
                         ?>
                         <tr>
                             <td><?php echo"$srcode"?></td>
-                            <td><?php echo"$firstname"?> <?php echo"$lastname"?></td>
+                            <td><?php echo"$fname"?> <?php echo"$lname"?></td>
                             <td><?php echo"$email"?></td>
                             <td><?php echo"$subject"?></td>
                             <td><?php echo "$message"?></td>

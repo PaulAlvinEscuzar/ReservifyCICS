@@ -34,7 +34,7 @@ include('../includes/header.php');
                 </div>
             </div>
         </nav>
-        <h2 class="text-center mt-3">Reports</h2>
+        <h2 class="text-center">Reports</h2>
         <div class="col-lg-4 bg-white m-auto mt-5">
             <form action="" method="POST">
                 <h2 class="text-center mb-5">Enter Begin and End Date</h2>

@@ -27,6 +27,17 @@ if (isset($_POST['adminid']) && isset($_POST['password'])) {
             $row = mysqli_fetch_assoc($login);
             if ($row['adminID'] === $adminid && $row['password'] === $password) {
                 echo "<script type = 'text/javascript'>alert('Login Successfully')</script>";
+                $id = $row['empid'];
+
+                $query_info = "SELECT * FROM tbempinfo WHERE empid = '$id'";
+                $info = mysqli_query($conn, $query_info);
+
+                if ($info && mysqli_num_rows($info) > 0) {
+                    $inforow = mysqli_fetch_assoc($info);
+                    $_SESSION['firstname'] = $inforow['firstname'];
+                    $_SESSION['lastname'] = $inforow['lastname'];
+                    $_SESSION['department'] = $inforow['course'];
+                } 
                 header('Location:../admin/admin.php');
                 exit();
             } else {

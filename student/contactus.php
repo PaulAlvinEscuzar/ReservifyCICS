@@ -21,7 +21,7 @@ include '../includes/db.php';
 
 session_start();
 
-if (isset($_SESSION['lastname'])) {
+if (isset($_SESSION['course'])) {
 
 if(isset($_POST['submit'])){
     $srcode = $_POST['srcode'];

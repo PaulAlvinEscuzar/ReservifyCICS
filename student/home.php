@@ -13,7 +13,7 @@
     <?php
     session_start();
 
-    if (isset($_SESSION['prog_sec'])) {
+    if (isset($_SESSION['course'])) {
     ?>
         <?php
         $already = 0;
@@ -88,9 +88,7 @@
                             <div class="border-top border-5 border-danger p-5">
                                 <h2 class="ps-5 pe-5">Welcome, <?php echo $_SESSION['firstname'], ' ', $_SESSION['lastname']; ?></h2>
                                 <h2 class="ps-5 pe-5">SR-Code: <?php echo $_SESSION['SR_Code']; ?></h2>
-                                <h2 class="ps-5 pe-5">Department: <?php echo $_SESSION['dept']; ?></h2>
-                                <div class="justify-content-center text-center">
-                                </div>
+                                <h2 class="ps-5 pe-5">Department: <?php echo $_SESSION['course']; ?></h2>
                             </div>
                         </div>
                     <div class="container-product pb-5">
