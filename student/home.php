@@ -56,13 +56,13 @@
                     <div class="mx-auto"></div>
                     <div class="navbar-nav">
                         <a class="nav-link active me-3" aria-current="page" href="#">
-                            <h4><i class="bi bi-house-door-fill"></i></h4>
+                            <h4><i class="bi bi-house-door-fill d-none d-md-block"></i><p class="d-block d-md-none text-center bg-primary p-3 text-light">Home</p></h4>
                         </a>
                         <a class="nav-link me-3" href="../student/trackorder.php">
-                            <h4><i class="bi bi-geo-alt-fill"></i></h4>
+                            <h4><i class="bi bi-geo-alt-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Track your Order</p></h4>
                         </a>
                         <a class="nav-link me-3" href="../student/contactus.php">
-                            <h4><i class="bi bi-envelope-fill"></i></h4>
+                            <h4><i class="bi bi-envelope-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Contact Us</p></h4>
                         </a>
                         <div class="container">
                             <a type="button" class="me-3 btn btn-outline-success btn-rounded w-100" href="../student/shopcart.php">

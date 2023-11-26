@@ -77,7 +77,7 @@ if(isset($_POST['update_product'])){
     }
 }
 ?>
-<div class="container">
+<div class="container-lg">
     <div class = "row-mt-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -122,15 +122,16 @@ if(isset($_POST['update_product'])){
                 </div>
             </form>
         </div>
-
-        <table class="table table-striped table-bordered table-hover mt-5">
+        <div class="container-lg">
+            <div class="row-md-5">        
+            <table class="table table-striped table-bordered table-hover mt-5">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Available Stocks</th>
-                    <th scope="col" colspan="2">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -161,12 +162,14 @@ if(isset($_POST['update_product'])){
                                 </div>
                             </form>
                         </td>
-                        <td  class="text-center">
+                        <td class="text-center">
+                            <div class="row justify-content-center">
+                            <div class="d-grid gap-2 d-md-flex gap-md-3">
                             <a href="../admin/addproduct.php?delete=<?php echo $row['ProductID'];?>" class='btn btn-primary
                             ' onclick="return confirm('Are you sure to delete this?')">Delete</a>
-                        </td>
-                        <td class="text-center">
                             <a href="../admin/addproduct.php?edit=<?php echo $row['ProductID'];?>" class='btn btn-success' onclick="scrollToEditForm()">Update</a>
+                            </div>
+                            </div> 
                         </td>
                     </tr>
                 <?php    
@@ -178,6 +181,9 @@ if(isset($_POST['update_product'])){
                 ?>
             </tbody>
         </table>
+            </div>
+        </div>
+
         <section class="edit-form">
         <?php
 

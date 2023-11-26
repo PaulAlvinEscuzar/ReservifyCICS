@@ -5,6 +5,13 @@ include('../includes/header.php');
 
 <head>
     <style>
+        *
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    transition:all .2s linear;
+}
     body {
         background-image: url('../img/bg-bsu.jpg');
         background-size: cover;
@@ -45,13 +52,13 @@ if (isset($_SESSION['course'])) {
             <div class="mx-auto"></div>
             <div class="navbar-nav">
                 <a class="nav-link me-3" aria-current="page" href="../student/home.php">
-                    <h4><i class="bi bi-house-door-fill"></i></h4>
+                    <h4><i class="bi bi-house-door-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Home</p></h4>
                 </a>
                 <a class="nav-link me-3 active" aria-current="page" href="../student/trackorder.php">
-                    <h4><i class="bi bi-geo-alt-fill"></i></h4>
+                    <h4><i class="bi bi-geo-alt-fill d-none d-md-block"></i><p class="d-block d-md-none text-center bg-primary p-3 text-light">Track Order</p></h4>
                 </a>
                 <a class="nav-link me-3" href="../student/contactus.php">
-                    <h4><i class="bi bi-envelope-fill"></i></h4>
+                    <h4><i class="bi bi-envelope-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Contact Us</p></h4>
                 </a>
 
                 <div class="container">
@@ -66,9 +73,10 @@ if (isset($_SESSION['course'])) {
     </div>
 </nav>
 <div class="bg-container">
-    <div class="container-xl">
+    <div class="container-lg">
 
         <body>
+            <div class="container-xl">
             <h1 class="text-center p-3">My Orders</h1>
             <?php
                  $ordercost = 0;
@@ -78,7 +86,8 @@ if (isset($_SESSION['course'])) {
                  $select_order = mysqli_query($conn, $query1);
      
                  if (mysqli_num_rows($select_order) > 0) {
-                     echo '<div class="row card-container">';
+                     echo '<div class="container-lg d-flex" style= "overflow-x:auto;">
+                     <div class="col card-container">';
                      while ($order_row = mysqli_fetch_assoc($select_order)) {
                          $orderid = $order_row['OrderID'];
                          $status = $order_row['Status'];
@@ -107,7 +116,7 @@ if (isset($_SESSION['course'])) {
                                          $price = $product_row['Price'];
                                          $image = $product_row['image'];
                                  ?>
-                                         <div class="card my-3 col-4 border border-dark p-3" style="width: 17rem;">
+                                        <div class="card my-3 col-4 border border-dark p-3" style="width: 17rem;">
                                              <img src="../uploadedimg/<?php echo "$image" ?>" class="card-img-top" alt="...">
                                              <div class="card-body">
                                                  <h5 class="card-title"><?php echo "$product_name" ?></h5>
@@ -118,6 +127,7 @@ if (isset($_SESSION['course'])) {
                                              </div>
                                          </div>
                                          
+                                         
                  <?php 
                  $ordercost+=  $totalprice;
                  }
@@ -125,7 +135,8 @@ if (isset($_SESSION['course'])) {
                              }
                          }
                      }
-                     echo '</div>';
+                     echo '</div>
+                     </div>';
                 } ?>
             <?php
         } else {
@@ -133,12 +144,12 @@ if (isset($_SESSION['course'])) {
             exit();
         }
             ?>
-
+            </div>
         </body>
 
     </div>
 
 </div>
-<div class="bg-primary-subtle p-5">
+<div class="bg-primary-subtle p-3">
     <h3 class="text-center"> Order Cost: &#8369;<?php echo "$ordercost" ?>.00 </h3>
 </div>

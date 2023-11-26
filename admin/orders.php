@@ -55,7 +55,7 @@ if(isset($_GET['delete'])){
 }
 ?>
 
-<div class="container">
+<div class="container-lg">
     <div class="row-mt-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">

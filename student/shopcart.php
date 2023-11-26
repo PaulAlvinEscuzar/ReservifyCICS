@@ -109,15 +109,9 @@ if (isset($_SESSION['SR_Code'])) {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="mx-auto"></div>
                 <div class="navbar-nav">
-                    <a class="nav-link me-3" href="../student/home.php">
-                        <h4><i class="bi bi-house-door-fill"></i></h4>
-                    </a>
-                    <a class="nav-link me-3" href="../student/trackorder.php">
-                        <h4><i class="bi bi-geo-alt-fill"></i></h4>
-                    </a>
-                    <a class="nav-link me-3" href="../student/contactus.php">
-                        <h4><i class="bi bi-envelope-fill"></i></h4>
-                    </a>
+                <a class="nav-link me-3" aria-current="page" href="../student/home.php"><h4><i class="bi bi-house-door-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Home</p></h4></a>
+                    <a class="nav-link me-3" href="../student/trackorder.php"><h4><i class="bi bi-geo-alt-fill d-none d-md-block"></i><p class="d-block d-md-none text-center">Track Order</p></h4></a>
+                    <a class="nav-link me-3" href="../student/contactus.php"><h4><i class="bi bi-envelope-fill d-none d-md-block"></i><p class="d-block d-md-none text-center ">Contact Us</p></h4></a>
                     <div class="container">
                         <a type="button" aria-current="page" class="me-3 btn btn-outline-success btn-rounded w-100 active" href="../student/cart.php">
                             <h4><i class="bi bi-cart-fill"></i></h4>
@@ -141,14 +135,15 @@ if (isset($_SESSION['SR_Code'])) {
                 <div class="row-mt-5">
                     <h3 class="text-center p-3"> Shopping Cart</h3>
                     <!--Table Start-->
-
-                    <table class="table table-striped table-bordered table-hover mt-5">
+                    <div class="container-lg">
+                        <div class="row-md-5">
+                        <table class="table table-striped table-bordered table-hover mt-5">
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">Product Image</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Price</th>
-                                <th scope="col" colspan="2">Quantity</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Cost</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -183,12 +178,11 @@ if (isset($_SESSION['SR_Code'])) {
                                                         <div class="input-group mb-3">
                                                             <input type="number" min="1" value="<?php echo $quan ?>" name="up_quan" class="form-control text-center p-1">
                                                         </div>
-                                                <td>
-                                                    <div class="container d-grid">
+                                                        <div class="d-grid">
                                                         <input type="submit" value="Update" class="btn btn-success mb-3" name="update_product">
-                                                    </div>
-                                                </td>
-                                                </form>
+
+                                                        </div>
+                                                    </form>
                                                 </td>
                                                 <!--For the pricing of product-->
                                                 <td>&#8369;<?php echo $subtotal =  $row['Price'] * $quan ?>.00</td>
@@ -204,7 +198,7 @@ if (isset($_SESSION['SR_Code'])) {
                             };
                             ?>
                             <tr>
-                                <td colspan="5" class="pt-3 pb-3">
+                                <td colspan="4" class="pt-3 pb-3">
                                     <h3 class="text-center text-monospace">Total:</h3>
                                 </td>
                                 <td>
@@ -216,6 +210,9 @@ if (isset($_SESSION['SR_Code'])) {
                             </tr>
                         </tbody>
                     </table>
+                        </div>
+                    </div>
+
                     <!--End of the table-->
                 </div>
             </body>

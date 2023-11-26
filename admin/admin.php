@@ -2,7 +2,7 @@
 include('../includes/header.php');
 ?>
 
-<div class="container">
+<div class="container-lg">
     <div class="row-mt-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -14,7 +14,7 @@ include('../includes/header.php');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="mx-auto"></div>
-                    <div class="navbar-nav">
+                    <div class="navbar-nav mt-3">
                         <a class="nav-link active me-3 btn btn-outline-primary btn-rounded text-wrap"
                             style="color:white ;" aria-current="page" href="#">
                             <h4>Home</h4>

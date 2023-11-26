@@ -59,7 +59,7 @@ if(isset($_POST['update_customer'])){
 }
 ?>
 
-<div class="container">
+<div class="container-lg">
     <div class="row-mt-5">
     <?php if (isset($_GET['message'])) { ?>
             <p class="text-center bg-primary-subtle p-4 mt-3 error"><?php echo $_GET['message']; ?></p>
@@ -84,8 +84,10 @@ if(isset($_POST['update_customer'])){
         </div>
     </nav>
 
-    <h1 class = "text-center mt-3">Customer Details</h4>
-    <table class="table table-striped table-bordered table-hover mt-5">
+    <div class="container-lg">
+        <div class="row-md-5">
+        <h1 class = "text-center mt-3">Customer Details</h1>
+    <table class="table table-striped table-bordered table-hover mt-5 container-fluid">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">SR-Code</th>
@@ -94,9 +96,8 @@ if(isset($_POST['update_customer'])){
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Department</th>
-                    <th scope="col">Program and Section</th>
                     <th scope="col">Cellphone Number</th>
-                    <th scope="col" colspan="3">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -131,10 +132,11 @@ if(isset($_POST['update_customer'])){
                         <td><?php echo $course ?></td>
                         <td><?php echo $cnum?></td>
                         <td>
+                            <div class="row"></div>
+                            <div class="d-grid gap-2 d-md-grid gap-md-3">
                             <a href = "../admin/customerDetails.php?update=<?php echo $row['SR_Code']?>" class="btn btn-primary">Update</a>
-                        </td>
-                        <td>
                             <a href = "../admin/customerDetails.php?delete=<?php echo $id?>" class="btn btn-primary">Delete</a>
+                            </div>                        
                         </td>
                     </tr>
                 <?php    
@@ -146,6 +148,8 @@ if(isset($_POST['update_customer'])){
                 ?>
             </tbody>
         </table>
+        </div>
+    </div>
         <section class="edit-form">
         <?php
 
