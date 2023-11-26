@@ -184,7 +184,7 @@ if (isset($_SESSION['SR_Code'])) {
                                                         </div>
                                                     </form>
                                                 </td>
-                                                <!--For the pricing of product-->
+                                                <!--For the pricing of product gegeg-->
                                                 <td>&#8369;<?php echo $subtotal =  $row['Price'] * $quan ?>.00</td>
                                                 <td class="text-center">
                                                     <a href="../student/shopcart.php?cartid=<?php echo $cartid; ?>" class='btn btn-success'>Delete</a>
