@@ -135,7 +135,7 @@ if (isset($_SESSION['SR_Code'])) {
                 <div class="row-mt-5">
                     <h3 class="text-center p-3"> Shopping Cart</h3>
                     <!--Table Start-->
-                    <div class="container-lg">
+                    <div class="container-lg" style="overflow-x:auto ;">
                         <div class="row-md-5">
                         <table class="table table-striped table-bordered table-hover mt-5">
                         <thead class="table-dark">

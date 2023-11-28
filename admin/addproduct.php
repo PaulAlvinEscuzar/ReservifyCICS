@@ -13,6 +13,21 @@
             min-height: 100vh;
             width: 100%;
         }
+        body {
+            background-image: url('../img/bg-bsu.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin:0;
+        }
+
+        .bg-container {
+            /* Add some padding or styling for better visibility */
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            min-height: 100vh; /* Ensure it covers the entire viewport height */
+            padding-bottom: 20px;
+        }
     </style>
 </head>
 <?php 
@@ -77,8 +92,6 @@ if(isset($_POST['update_product'])){
     }
 }
 ?>
-<div class="container-lg">
-    <div class = "row-mt-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand ms-3" href="#">Admin</a>
@@ -99,9 +112,13 @@ if(isset($_POST['update_product'])){
             </div>
         </div>
     </nav>
+    <div class="bg-container">
     <?php if (isset($_GET['message'])) { ?>
-            <p class="text-center bg-primary-subtle p-4 mt-3 error"><?php echo $_GET['message']; ?></p>
+            <p class="text-center bg-primary-subtle p-4 pt-3 error"><?php echo $_GET['message']; ?></p>
         <?php } ?>
+        <body>
+    <div class="container-lg" style="overflow-x:auto ;">
+    <div class = "row-mt-5">
         <div class="col-lg-4 bg-white m-auto border border-danger-subtle mt-5">
             <form action="" method="post" enctype="multipart/form-data">
                 <h3 class="text-center">Add New Product</h3>
@@ -122,7 +139,7 @@ if(isset($_POST['update_product'])){
                 </div>
             </form>
         </div>
-        <div class="container-lg">
+        <div class="container-lg" style="overflow-x:auto ; overflow-y: auto;">
             <div class="row-md-5">        
             <table class="table table-striped table-bordered table-hover mt-5">
             <thead class="table-dark">
@@ -183,7 +200,10 @@ if(isset($_POST['update_product'])){
         </table>
             </div>
         </div>
-
+        </div>
+</div>
+    </body>
+</div>
         <section class="edit-form">
         <?php
 
@@ -224,8 +244,8 @@ if(isset($_POST['update_product'])){
     };
         ?>
     </section>
-</div>
-</div>
+
+
 <script>
     document.querySelector('#close_edit').onclick = () =>{
         document.querySelector('.edit-form').style.display = 'none';

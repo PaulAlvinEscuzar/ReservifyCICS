@@ -1,5 +1,5 @@
 <?php
-include '../includes/header.php';
+include '../includes/header.php';0;
 include '../includes/db.php';
 ?>
 <head>
@@ -8,10 +8,23 @@ include '../includes/db.php';
     max-width: 200px;
     word-wrap: break-word;
 }
+body {
+            background-image: url('../img/bg-bsu.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin:0;
+        }
+
+        .bg-container {
+            /* Add some padding or styling for better visibility */
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            min-height: 100vh; /* Ensure it covers the entire viewport height */
+            padding-bottom: 20px;
+        }
     </style>
 </head>
-<div class="container">
-    <div class="row-mt-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand ms-3" href="#">Admin</a>
@@ -44,8 +57,12 @@ include '../includes/db.php';
                 </div>
             </div>
         </nav>
-
-    <table class="table table-striped table-bordered table-hover mt-5">
+<div class="bg-container">
+    <body>
+    <div class="container-lg">
+            <div class="row-md-5">
+                <div class="text-center pt-5"></div>
+            <table class="table table-striped table-bordered table-hover pt-5">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">SR_Code</th>
@@ -102,5 +119,7 @@ include '../includes/db.php';
             ?>
             </tbody>
     </table>
-    </div>
+            </div>
+        </div>
+    </body>
 </div>

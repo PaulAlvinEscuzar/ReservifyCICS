@@ -17,6 +17,6 @@
     <img src="../img/bsu_logo.png" style="width: auto ; height: 15vh ;" alt="...">
     <h1 class="text-center mt-4">Batangas State University</h1>
     <div class="logo-header">
-    <img src="../img/cics_logo.jpg" alt="cics-logo" style="width:auto; height: 15vh;">
+    <img src="../img/cics_logo.png" alt="cics-logo" style="width:auto; height: 15vh;">
         </div>
 </div>
